@@ -118,9 +118,8 @@ $current = 'Home';
                              id="password"
                              size="35"/> <br></center> <br>
 
-            <input type="button"
-                   value="Login"
-                   onclick="formhash(this.form, this.form.password);" />
+            <input type="submit"
+                   value="Login"/>
         </form>
  		<br>
 <?php }

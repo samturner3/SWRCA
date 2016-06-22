@@ -57,14 +57,15 @@ function login($email, $password, $db) {
             // If the user exists we check if the account is locked
             // from too many login attempts
             if (checkbrute($data['shopper_id'], $db) == true) {
-                // Account is locked
+                echo 'Account is locked';
                 // Send an email to user saying their account is locked
+				exit;
                 return false;
             } else {
                 // Check if the password in the database matches
                 // the password the user submitted.
-                if (password_verify($password, $data['sh_password'])) {
-                    // Password is correct!
+                if ($password === $data['sh_password']) {
+                    echo 'Password is correct!';
                     // Get the user-agent string of the user.
                     $user_browser = $_SERVER['HTTP_USER_AGENT'];
                     // XSS protection as we might print this value
@@ -94,16 +95,22 @@ function login($email, $password, $db) {
                     // Login successful.
                     return true;
                 } else {
-                    // Password is not correct
+                    echo 'Password is not correct';
+					echo '<br> Entered Password:';
+					echo $password;
+					echo '<br> Database Password:';
+					echo $data['sh_password'];
                     // We record this attempt in the database
                     $now = time();
                     $db->exec("INSERT INTO login_attempt(shopper_id, time)
                                     VALUES ('$data[shopper_id]', '$now')");
-                    return false;
+                    exit;
+					return false;
                 }
             }
         } else {
-            // No user exists.
+            echo 'No user exists.';
+			exit;
             return false;
         }
     }

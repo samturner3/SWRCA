@@ -155,7 +155,7 @@ if (isset($_POST['fname'], $_POST['lname'], $_POST['addr1'], $_POST['addr2'], $_
         //$random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true)); //do not need for PDO
 
         // Create salted password
-        $password = password_hash($password, PASSWORD_DEFAULT); //hash('sha512', $password . $random_salt);
+        /*$password = password_hash($password, PASSWORD_DEFAULT);*/ //hash('sha512', $password . $random_salt);
 
         // Insert the new user into the database SHOPPER
         if ($insert_stmt = $db->prepare("INSERT INTO shopper (sh_email, sh_username, sh_password)
