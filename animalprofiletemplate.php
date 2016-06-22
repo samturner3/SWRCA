@@ -135,7 +135,7 @@ require 'includes/pagetop.php'; ?>
       <p><b>Address Found: </b><?php echo $row['address_1']; ?></p>
       <p><b>Date Found: </b><?php echo $row['date']; ?></p>
       <p>
-      <a href="imageDB" class="btn btn-default">Update Size</a>
+      <a href="sizeUpdate.php?id=<?php echo $row['record_id']; ?>" class="btn btn-default">Update Size</a>
 
     <h4><strong>Animal Image Upload (.JPG Only)</strong></h4>
     <form action="upload.php?id=<?php echo $row['record_id']; ?>" method="post" enctype="multipart/form-data">
