@@ -17,6 +17,9 @@ if (login_check($db) == true) {
 //print_r($stmt);
 ?>
 
+<?php
+$_SESSION["id_session"] = $id;
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -134,8 +137,8 @@ require 'includes/pagetop.php'; ?>
       <p>
       <a href="imageDB" class="btn btn-default">Update Size</a>
 
-    <h4><strong>Animal Image Upload</strong></h4>
-    <form action="upload.php" method="post" enctype="multipart/form-data">
+    <h4><strong>Animal Image Upload (.JPG Only)</strong></h4>
+    <form action="upload.php?id=<?php echo $row['record_id']; ?>" method="post" enctype="multipart/form-data">
     Select image to upload:
     <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Upload Image" name="submit">
