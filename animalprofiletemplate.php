@@ -139,7 +139,7 @@ require 'includes/pagetop.php'; ?>
 
     <h4><strong>Animal Image Upload (.JPG Only)</strong></h4>
     <form action="upload.php?id=<?php echo $row['record_id']; ?>" method="post" enctype="multipart/form-data">
-    Select image to upload:
+    Select image to upload (Picture filename should have no spaces):
     <input type="file" name="fileToUpload" id="fileToUpload">
     <input type="submit" value="Upload Image" name="submit">
     </form>
