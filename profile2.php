@@ -16,33 +16,68 @@ if (login_check($db) == true) {
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title> Example </title>
+  <title>Sydney Wildlife</title>
   <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-  <link href="css/bootstrap.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  
+  <script type="text/JavaScript" src="js/sha512.js"></script>
+  <script type="text/JavaScript" src="js/forms.js"></script>
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
+    
+    html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 150px; /* bottom = footer height */
+    /*background: #a6db70;*/
+}
+footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+}
+    
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
     }
     
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
-    }
-  </style>
+    
+
   
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+   /*   background-color: #a6db70;*/
+      height: 100%;
+      
+    }
+    
+   
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+
+  </style>
 </head>
 <body>
+
 
 <?php 
 $current = 'Profiles';
@@ -51,7 +86,7 @@ require 'includes/pagetop.php'; ?>
 		   ///Get All Profiles
 		   //$shopper_id = $_SESSION['user_id'];
         if ($stmt = $db->prepare("SELECT *
-									from animal
+									from master_animal
 		")) {
         //$stmt->bindParam(1, $shopper_id);  // Bind "$email" to parameter.
         $stmt->execute();    // Execute the prepared query.
@@ -85,18 +120,16 @@ require 'includes/pagetop.php'; ?>
       
       <div class="col-sm-6 col-md-4 col-lg-3 hero-feature">
        <div class="thumbnail">
-       	<img src="<?php echo $row['animalPictureFile']; ?>" alt="" height="200px" width="200px">
+       	
        
        <div class="caption">
-                        <h3><?php echo $row['animialSpecies']; ?></h3>
-                        <h4><?php echo $row['animalType']; ?></h4>
-                        <p><?php echo $row['animalDescription']; ?></p>
-                        <h5><strong>Status: </strong><?php echo $row['animalStatus']; ?></h5>
-                        <h5><strong>Animial ID: </strong><?php echo $row['animalID']; ?></h5>
-                        <h5><strong>Capture ID: </strong><?php echo $row['captureID']; ?></h5>
-                        <h5><strong>Injury ID: </strong><?php echo $row['injuryID']; ?></h5>
+                        <h3><?php echo $row['species']; ?></h3>
+                        <h5><strong>Animial ID: </strong><?php echo $row['record_id']; ?></h5>
+                        <h5><strong>Animal Age: </strong><?php echo $row['animal_age']; ?></h5>
+                        <h5><strong>Carer: </strong><?php echo $row['carer_name']; ?></h5>
+                        <h5><strong>Injury: </strong><?php echo $row['injuries']; ?></h5>
                         <p>
-                            <a href="animalprofiletemplate.php?id=<?php echo $row['animalID']; ?>" class="btn btn-primary">Go to full profile</a> <a href="imageDB.php" class="btn btn-default">Upload image</a>
+                            <a href="animalprofiletemplate.php?id=<?php echo $row['record_id']; ?>" class="btn btn-primary">Go to full profile</a> <a href="imageDB.php" class="btn btn-default">Upload image</a>
                         </p>
                     </div>
       </div>

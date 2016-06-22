@@ -40,11 +40,8 @@ body {
     /*background: #a6db70;*/
 }
 footer {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    height: 150px;
-    width: 100%;
+      background-color: #f2f2f2;
+      padding: 25px;
 }
     
     .navbar {
@@ -80,8 +77,9 @@ footer {
   </style>
 </head>
 <body>
+
+
 <?php
-	
 $current = 'Decision Tree';
 	require 'includes/pagetop.php'; ?>
 

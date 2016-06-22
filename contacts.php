@@ -16,33 +16,68 @@ if (login_check($db) == true) {
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title> Example </title>
+  <title>Sydney Wildlife</title>
   <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-  <link href="css/bootstrap.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  
+  <script type="text/JavaScript" src="js/sha512.js"></script>
+  <script type="text/JavaScript" src="js/forms.js"></script>
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
+    
+    html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 150px; /* bottom = footer height */
+    /*background: #a6db70;*/
+}
+footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+}
+    
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
     }
     
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
-    }
-  </style>
+    
+
   
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+   /*   background-color: #a6db70;*/
+      height: 100%;
+      
+    }
+    
+   
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+
+  </style>
 </head>
 <body>
+
 
 <?php 
 $current = 'contacts';
