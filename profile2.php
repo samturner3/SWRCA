@@ -103,7 +103,6 @@ require 'includes/pagetop.php'; ?>
 </div>
   
 <div class="container-fluid bg-3 text-center">    
-  <p>All profiles below are pulled from a database, and will be sortable based on query etc.<br>We will also implement a list view etc.</p><br>
   <div class="row">
   
   

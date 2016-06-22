@@ -101,9 +101,18 @@ require 'includes/pagetop.php'; ?>
 
 <!-- Text input-->
 <div class="form-group">
+  <label class="col-md-4 control-label" for="textinput">Record ID</label>  
+  <div class="col-md-4">
+  <input id="textinput" name="recordID" type="text" class="form-control input-md" required="">
+    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Date</label>  
   <div class="col-md-4">
-  <input id="textinput" name="date" type="text" placeholder="DD/MM/YYYY" class="form-control input-md">
+  <input id="textinput" name="date" type="text" placeholder="DD/MM/YYYY" class="form-control input-md" required="">
     
   </div>
 </div>
@@ -112,7 +121,7 @@ require 'includes/pagetop.php'; ?>
 <div class="form-group">
   <label class="col-md-4 control-label" for="textinput">Species</label>  
   <div class="col-md-4">
-  <input id="textinput" name="species" type="text" placeholder="" class="form-control input-md">
+  <input id="textinput" name="species" type="text" placeholder="" class="form-control input-md" required="">
     
   </div>
 </div>
@@ -126,13 +135,28 @@ require 'includes/pagetop.php'; ?>
       Baby
     </label> 
     <label class="radio-inline" for="animalAge-1">
-      <input type="radio" name="animal_age" id="animalAge-1" value="Juv">
+      <input type="radio" name="animal_age" id="animalAge-1" value="Juvenile">
       Juv
     </label> 
     <label class="radio-inline" for="animalAge-2">
       <input type="radio" name="animal_age" id="animalAge-2" value="Adult">
       Adult
     </label>
+  </div>
+</div>
+
+<!-- Multiple Radios (inline) -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="bat_status">Is a bat?</label>
+  <div class="col-md-4"> 
+    <label class="radio-inline" for="animalAge-0">
+      <input type="radio" name="batCheck" id="animalAge-0" value="bat" checked="checked">
+      Yes
+    </label> 
+    <label class="radio-inline" for="animalAge-1">
+      <input type="radio" name="batCheck" id="animalAge-1" value="other">
+      No
+    </label> 
   </div>
 </div>
 
@@ -212,15 +236,6 @@ require 'includes/pagetop.php'; ?>
   <label class="col-md-4 control-label" for="workPhone"></label>  
   <div class="col-md-4">
   <input id="workPhone" name="phone_work" type="text" placeholder="(Work)" class="form-control input-md">
-    
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="locationFound">Location Found (if different to above)</label>  
-  <div class="col-md-5">
-  <input id="locationFound" name="location" type="text" placeholder="Full Address" class="form-control input-md">
     
   </div>
 </div>
@@ -336,7 +351,7 @@ require 'includes/pagetop.php'; ?>
 <div class="form-group">
   <label class="col-md-4 control-label" for="carerID"></label>  
   <div class="col-md-4">
-  <input id="carerID" name="carer_id" type="text" placeholder="ID of carer" class="form-control input-md">
+  <input id="carerID" name="carer_id" type="text" placeholder="ID of carer" class="form-control input-md"  required="">
     
   </div>
 </div>

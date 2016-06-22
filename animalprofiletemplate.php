@@ -151,7 +151,7 @@ require 'includes/pagetop.php'; ?>
       
       	<?php } ?> 
 
-<?php if($row['species'] == 'Bat') : ?>
+<?php if($row['isBat'] == 'bat') : ?>
           <div class="col-sm-8 text-left col-lg-10"> 
             <img src='includes/batplotweight.php' class="img-responsive">
             <br></br>
