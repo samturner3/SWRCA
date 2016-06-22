@@ -120,7 +120,7 @@ require 'includes/pagetop.php'; ?>
       
       <div class="col-sm-6 col-md-4 col-lg-3 hero-feature">
        <div class="thumbnail">
-       	
+       	<img src="<?php echo $row['animalPictureFile']; ?>" alt="" height="200px" width="200px">
        
        <div class="caption">
                         <h3><?php echo $row['species']; ?></h3>
@@ -129,7 +129,7 @@ require 'includes/pagetop.php'; ?>
                         <h5><strong>Carer: </strong><?php echo $row['carer_name']; ?></h5>
                         <h5><strong>Injury: </strong><?php echo $row['injuries']; ?></h5>
                         <p>
-                            <a href="animalprofiletemplate.php?id=<?php echo $row['record_id']; ?>" class="btn btn-primary">Go to full profile</a> <a href="imageDB.php" class="btn btn-default">Upload image</a>
+                            <a href="animalprofiletemplate.php?id=<?php echo $row['record_id']; ?>" class="btn btn-primary">Go to full profile</a>
                         </p>
                     </div>
       </div>

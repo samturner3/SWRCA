@@ -18,31 +18,65 @@ if (login_check($db) == true) {
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title> Example Profile </title>
+  <title>Sydney Wildlife</title>
   <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-  <link href="css/bootstrap.css" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="css/bootstrap.css">
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+  
+  <script type="text/JavaScript" src="js/sha512.js"></script>
+  <script type="text/JavaScript" src="js/forms.js"></script>
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
+    
+    html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    margin: 0 0 150px; /* bottom = footer height */
+    /*background: #a6db70;*/
+}
+footer {
+      background-color: #f2f2f2;
+      padding: 25px;
+}
+    
     .navbar {
       margin-bottom: 0;
       border-radius: 0;
     }
     
-    /* Add a gray background color and some padding to the footer */
-    footer {
-      background-color: #f2f2f2;
-      padding: 25px;
-    }
-  </style>
+    
+
   
+    
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+    
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+   /*   background-color: #a6db70;*/
+      height: 100%;
+      
+    }
+    
+   
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;} 
+    }
+
+  </style>
 </head>
 <body>
 
@@ -51,7 +85,7 @@ $current = 'none';
 require 'includes/pagetop.php'; ?>
 <?php
         if ($stmt = $db->prepare("SELECT *
-									from animal_desc WHERE Animal_ID_PF=?
+									from master_animal WHERE record_id=?
 		")) {
 		$stmt->bindParam(1,$id);
         $stmt->execute();    // Execute the prepared query.
@@ -89,24 +123,32 @@ require 'includes/pagetop.php'; ?>
 			?>
             
      <div class="col-sm-3 center-block">
-      <p><strong>Initial Animal Picture</strong></p>
-      <img src=<?php echo $row['animalPictureFile_PF']; ?> class="img-responsive" style="width:100%" alt="Image">
+      <p><strong>Current Animal Picture</strong></p>
+      <img src=<?php echo $row['animalPictureFile']; ?> class="img-responsive" style="width:100%" alt="Image">
     </div>
     <div class="col-sm-8 text-left col-lg-10"> 
-      <p><b>Animal Species: </b> <?php echo $row['Species_PF']; ?></p>
-      <p><b>Animal Species ID: </b> <?php echo $row['Species_ID_PF']; ?></p>
-      <p><b>Current Size (Forearm Length if bat): </b><?php echo $row['Current_size']; ?></p>
-      <p><b>Current Weight: </b><?php echo $row['Current_weight']; ?></p>
-      <p><b>Address Found: </b><?php echo $row['Address_found']; ?></p>
-      <p><b>Time Found: </b><?php echo $row['Time_found']; ?></p>
-      <p><b>Date Found: </b><?php echo $row['Date_found']; ?></p>
+      <p><b>Animal Species: </b> <?php echo $row['species']; ?></p>
+      <p><b>Current Size mm (Forearm Length if bat): </b><?php echo $row['size']; ?></p>
+      <p><b>Address Found: </b><?php echo $row['address_1']; ?></p>
+      <p><b>Date Found: </b><?php echo $row['date']; ?></p>
+      <p>
+      <a href="imageDB" class="btn btn-default">Update Size</a>
+
+    <h4><strong>Animal Image Upload</strong></h4>
+    <form action="upload.php" method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit">
+    </form>
+    <br></br>
+
     </div>
 
       
       
       	<?php } ?> 
 
-<?php if($id == 1 || $id == 8) : ?>
+<?php if($row['species'] == 'Bat') : ?>
           <div class="col-sm-8 text-left col-lg-10"> 
             <img src='includes/batplotweight.php' class="img-responsive">
             <br></br>
@@ -115,7 +157,7 @@ require 'includes/pagetop.php'; ?>
 <?php endif; ?>
 
 
-      
+  
    
    
    
