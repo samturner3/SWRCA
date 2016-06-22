@@ -14,11 +14,11 @@ $warning_msg = "";
 $error_array = array();
 $error_MissingValues_array = array();
 $form_values_array = array();
-//echo 'here';
+echo 'here';
 	//exit;
-if (isset($_POST['fname'], $_POST['lname'], $_POST['addr1'], $_POST['addr2'], $_POST['hcity'], $_POST['hstate'], $_POST['hcountry'], $_POST['hcode'], $_POST['username'], $_POST['email'], $_POST['ccard'], $_POST['ccexpmonth'], $_POST['ccexpyear'], $_POST['password']  )) {
+if (isset($_POST['fname'], $_POST['lname'], $_POST['addr1'], $_POST['addr2'], $_POST['hcity'], $_POST['hstate'], $_POST['hcountry'], $_POST['hcode'], $_POST['username'], $_POST['email'], $_POST['password']  )) {
 	echo $_POST['fname'];
-	//echo 'allset!';
+	echo 'allset!';
 	//exit;
     // Sanitize and validate the data passed in and set them.
 	$fname = filter_input(INPUT_POST, 'fname', FILTER_SANITIZE_STRING);
@@ -33,17 +33,18 @@ if (isset($_POST['fname'], $_POST['lname'], $_POST['addr1'], $_POST['addr2'], $_
 	
 	$username = filter_input(INPUT_POST, 'username', FILTER_SANITIZE_STRING);
 	$email = filter_input(INPUT_POST, 'email', FILTER_SANITIZE_EMAIL);
-	$ccard = filter_input(INPUT_POST, 'ccard', FILTER_SANITIZE_STRING);
+	/*$ccard = filter_input(INPUT_POST, 'ccard', FILTER_SANITIZE_STRING);
 	$ccexpmonth = filter_input(INPUT_POST, 'ccexpmonth', FILTER_SANITIZE_STRING);
-	$ccexpyear = filter_input(INPUT_POST, 'ccexpyear', FILTER_SANITIZE_STRING);
+	$ccexpyear = filter_input(INPUT_POST, 'ccexpyear', FILTER_SANITIZE_STRING);*/
 	$p = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-	//echo $p;
-	// Add all elements to array
+	echo $p;
+	// Add all elements to array for exist check
+	// only required fields here!
 
 	$form_values_array['First Name'] = $fname;
 	$form_values_array['Last Name'] = $lname;
 	$form_values_array['Address Line 1'] = $addr1;
-	$form_values_array['Address Line 2'] = $addr2;
+	//$form_values_array['Address Line 2'] = $addr2;
 	$form_values_array['Suburb / City'] = $hcity;
 	$form_values_array['State'] = $hstate;
 	$form_values_array['Counrty'] = $hcountry;
@@ -51,9 +52,9 @@ if (isset($_POST['fname'], $_POST['lname'], $_POST['addr1'], $_POST['addr2'], $_
 	
 	$form_values_array['Username'] = $username;
 	$form_values_array['Email'] = $email;
-	$form_values_array['Credit Card'] = $ccard;
+	/*$form_values_array['Credit Card'] = $ccard;
 	$form_values_array['Credit Card Expiry Month'] = $ccexpmonth;
-	$form_values_array['Credit Card Expiry Year'] = $ccexpyear;
+	$form_values_array['Credit Card Expiry Year'] = $ccexpyear;*/
 	$form_values_array['Password'] = $p;
 	//
 
@@ -66,6 +67,9 @@ if (isset($_POST['fname'], $_POST['lname'], $_POST['addr1'], $_POST['addr2'], $_
 					$error_MissingValues_array[$name] = "";
 				}
 				//print $error;
+				else {
+					echo ' all fields exist!';
+				};
 			};
 	}
 
@@ -73,7 +77,8 @@ if (isset($_POST['fname'], $_POST['lname'], $_POST['addr1'], $_POST['addr2'], $_
     $email = filter_var($email, FILTER_VALIDATE_EMAIL);
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         // Not a valid email
-        //$error_msg .= 'The email address you entered is not valid.(ServerSide check error)';
+		echo ' The email address you entered is not valid.(ServerSide check error)';
+        $error_msg .= 'The email address you entered is not valid.(ServerSide check error)';
 
 		$error_array[] = 'The email address you entered is not valid.
 						(ServerSide check error)';
@@ -81,11 +86,12 @@ if (isset($_POST['fname'], $_POST['lname'], $_POST['addr1'], $_POST['addr2'], $_
     }
 
     $password = filter_input(INPUT_POST, 'password', FILTER_SANITIZE_STRING);
-    if (strlen($password) != 128) {
+    /*if (strlen($password) != 128) {
         // The hashed pwd should be 128 characters long.
         // If it's not, something really odd has happened
-       // $error_msg .= 'Invalid password configuration. (ServerSide check error)';
-    }
+       echo 'Invalid password configuration. (ServerSide check error)';
+	   echo '<br>' . $password;
+    }*/
 
 
 
@@ -213,7 +219,7 @@ $ownEntry = "1";
 			}*/
 
 			// Insert the new user into the database FINANCE
-        if ($insert_stmt = $db->prepare("INSERT INTO finance (ccardNum, ccexpMonth, ccexpYear, shopper_id)
+/*        if ($insert_stmt = $db->prepare("INSERT INTO finance (ccardNum, ccexpMonth, ccexpYear, shopper_id)
   											VALUES(?, ?, ?, ?);"
 											)){
             //$insert_stmt->bind_param('ssssssssss', $email, $username, $fname, $lname, $sClass, $email, $hname, $hcity, $hstate, $hcode);
@@ -227,7 +233,7 @@ $ownEntry = "1";
                 header('Location: ../error.php?err=Registration failure: INSERT');
             }
 			}
-
+*/
 
 		// the message
 		$msg = "Hi " + $fname + ",\n You have registered successfully. \nUsername: " + $username + "\n\nYou may now log in.";
@@ -246,17 +252,26 @@ $ownEntry = "1";
 		mail($email,$mailsubject,$msg,$mailheaders);
 */
         setcookie(success);
-		header('Location: /index.php');
+		header('Location: ../index.php');
     }
 	else {
 		$warning_msg = 'There were error messages, so new user was not added.';
-		//echo 'here2';
+		echo 'error2';
+		echo '<br>';
+		echo 'error_msg:';
+		print_r ($error_msg);
+		echo '<br>';
+		echo 'error_array:'; 
+		print_r ($error_array) ;
+		echo '<br>';
+		echo 'error_MissingValues_array:';
+		print_r ($error_MissingValues_array);
 		//exit;
 	}
 	
 }
 else {
-		//echo 'not all set <br>';
+		echo 'not all set <br>';
 		//print_r($_POST);
 		
 	}

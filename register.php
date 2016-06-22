@@ -20,14 +20,15 @@ if (login_check($db) == true) {
 <html lang="en">
 <head>
   <title>Sydney Wildlife</title>
-  <meta charset="utf-8">
+   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bootstrap.css">
+  <link rel="stylesheet" href="css/bootstrap.css">
   <script src="jquery.min.js"></script>
   <script src="bootstrap.min.js"></script>
   
   <script type="text/JavaScript" src="js/sha512.js"></script>
   <script type="text/JavaScript" src="js/forms.js"></script>
+ 
   <?php include_once 'includes/HeadScrips.php';?>
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
@@ -66,18 +67,13 @@ if (login_check($db) == true) {
 <body>
     <div class="row content">
 <?php
+$current = 'Register';
 	require 'includes/pagetop.php'; ?>
 
 <div class="container-fluid text-center">    
   <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <p><a href="#">Search</a></p>
-      <p><a href="#">Transfer</a></p>
-    </div>
     
-    <h1>Login</h1>
-    
-   <h1>Register with us</h1>
+    <h1>Admin Add User</h1>
          <!-- Registration form to be output if the POST variables are not
         set or if the registration script caused an error. -->
         <div id="error">
@@ -126,15 +122,7 @@ if (login_check($db) == true) {
             <li>Emails must have a valid email format</li>
             
             <li>Passwords must be at least 6 characters and maximum of 20.</li>
-            <li>Passwords must also contain:
-                <ul>
-                    <li>At least one one digit from 0-9</li>
-                    <li>At least one lowercase character</li>
-                    <li>At least two one uppercase character</li>
-                    <li>At least one special symbol: @,#,$,%</li>
-                    
-                </ul>
-            </li>
+            
             <li>Your password and confirmation must match exactly</li>
         </ul>
         
@@ -170,30 +158,7 @@ if (login_check($db) == true) {
                 
             Email: <input type="email" name="email" id="email" size="35" <?php if (isset($_POST['email'])) echo 'value="'.$_POST['email'].'"';?>/><br><br>
             
-            Credit Card Number: <input type="number" name="ccard" id="ccard" size="15" <?php if (isset($_POST['ccard'])) echo 'value="'.$_POST['ccard'].'"';?>/><br><br>
-            
-            Expiration Date: 
-            <select name="ccexpmonth" id="ccexpmonth" >
-           			<option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-					</select>/
-                    <select name="ccexpyear" id="ccexpyear" >
-           			<option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-					</select><br><br>
-            
+           
             Password: <input type="password"
                              name="password" 
                              id="password" size="35"/><br>
@@ -218,9 +183,6 @@ if (login_check($db) == true) {
                                    this.form.username,
                                    this.form.email,
                                    
-                                   this.form.ccard,
-                                   this.form.ccexpmonth,
-                                   this.form.ccexpyear,
                                    
                                    this.form.password,
                                    this.form.confirmpwd);" /> 
@@ -249,7 +211,7 @@ if (login_check($db) == true) {
 			addr2: {required: false},
 			hcity: {required: true, lettersonly: true},
 			hcode: {required: true, maxlength: 8, minlength: 3},
-			ccard: {required: true, number: true, maxlength: 10, minlength: 10},
+			/*ccard: {required: true, number: true, maxlength: 10, minlength: 10},*/
    			email: {required: true, email: true },
 			username: {required: true},
 			password: {required: true},
@@ -264,7 +226,7 @@ if (login_check($db) == true) {
 			
 			hcity: {required: "Missing City / Suburb Name", lettersonly: "May only contain letters"},
 			hcode: {required: "Missing Postcode", maxlength: "Must under 9 characters", minlength: "Must be at least 3 characters"},
-			ccard: {required: "Missing credit card number", number: "May only contain numbers", maxlength: "Must be 10 digits in length", minlength: "Must be 10 digits in length"},
+			/*ccard: {required: "Missing credit card number", number: "May only contain numbers", maxlength: "Must be 10 digits in length", minlength: "Must be 10 digits in length"},*/
    			email: {required: "Missing Email", email: "Incorrect email format" },
 			username: {required: "Missing Username"},
 			password: {required: "Missing Password"},

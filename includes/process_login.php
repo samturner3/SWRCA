@@ -11,7 +11,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 
     if (login($email, $password, $db) == true) {
         // Login success
-        header('Location: ../home.php');
+        header('Location: ../index.php');
     } else {
         // Login failed
         header('Location: ../index.php?error=1');

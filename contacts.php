@@ -9,12 +9,8 @@ sec_session_start();
 
 if (login_check($db) == true) {
     $logged = 'in';
-} else {
-    $logged = 'out';
-}
-//print_r($stmt);
+	
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -104,7 +100,17 @@ Phone: (02) 9413 4300<br>
 Fax: (02) 9413 4399</p>
 
    </div>
-</div><br>
+</div>
+
+<?php
+} else {
+    $logged = 'out';
+	echo 'Please <a href="index.php">login</a> to access this page';
+}
+//print_r($stmt);
+?>
+
+<br>
 
 <!-- Footer -->
        <footer class="container-fluid text-center">

@@ -1,6 +1,5 @@
 <?php
 include_once 'db_connect_PDO.php';
-$siteroot = '/comp344Ass2_PDO';
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);

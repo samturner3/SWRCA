@@ -9,10 +9,7 @@ sec_session_start();
 
 if (login_check($db) == true) {
     $logged = 'in';
-} else {
-    $logged = 'out';
-}
-//print_r($stmt);
+	
 ?>
 
 
@@ -145,7 +142,15 @@ require 'includes/pagetop.php'; ?>
    
    
    </div>
-</div><br>
+</div>
+<?php
+} else {
+    $logged = 'out';
+	echo 'Please <a href="index.php">login</a> to access this page';
+}
+//print_r($stmt);
+?>
+<br>
 
 <!-- Footer -->
        <footer class="container-fluid text-center">

@@ -95,10 +95,6 @@ $current = 'Home';
 	require 'includes/pagetop.php'; ?>
 <div class="container-fluid text-center">    
   <div class="row content">
-    <div class="col-sm-2 sidenav">
-      <p><a href="animalform.php">Animal form</a></p>
-      <p><a href="#">Transfer</a></p>
-    </div>
 
     <h1>Login</h1>
 
@@ -134,8 +130,8 @@ $current = 'Home';
             echo '<p>Do you want to change user? <a href="includes/logout.php">Log out</a>.</p>';
         } else {
                         echo '<p>Currently logged ' . $logged . '.</p>';
-                        echo "<p>If you don't have a login, please <a href='#'>register</a></p>";
-						echo '<a href="#">Forgot Password?</a>';
+                        echo "<p>If you don't have a login, please ask your admin for a login.</p>";
+						
                 }
 ?>
 </div>

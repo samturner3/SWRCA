@@ -30,12 +30,19 @@ if (login_check($db) == true) {
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
       	<li <?php if($current == 'Home') {echo 'class="active"';} ?>><a href="index.php">Home</a></li>
+        
+		<?php
+        if ($logged == 'in'){?>
+        
         <li <?php if($current == 'Decision Tree') {echo 'class="active"';} ?>><a href="DecisionTree.php">Decision Tree</a></li>
        <!-- <li><a href="#">Contact</a></li>-->
         <li <?php if($current == 'Profiles') {echo 'class="active"';} ?>><a href="profile2.php">Profiles</a></li>
         <li <?php if($current == 'eform') {echo 'class="active"';} ?>><a href="eForm.php">eForm</a></li>
         <li <?php if($current == 'contacts') {echo 'class="active"';} ?>><a href="contacts.php">Contact</a></li>
         <!--<li><a href="profile3.php">ProfilesDB</a></li>-->
+       
+			 <li><a href="includes/logout.php">Log Out</a></li>    
+		<?php };?>
         <!--<li><a href="imageDB.php">Image Upload</a></li>-->
        <!-- <li><a href="user_account.php">Account</a></li>
         <li><a href="AddressBook.php">My Addres Book</a></li>-->

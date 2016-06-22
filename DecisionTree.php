@@ -9,11 +9,8 @@ sec_session_start();
 
 if (login_check($db) == true) {
     $logged = 'in';
-} else {
-    $logged = 'out';
-}
-//print_r($stmt);
-?>
+	?>
+
 
 
 <!DOCTYPE html>
@@ -102,6 +99,14 @@ $current = 'Decision Tree';
   </div>
   
 <br>
+<?php
+} else {
+    $logged = 'out';
+	echo 'Please <a href="index.php">login</a> to access this page';
+}
+//print_r($stmt);
+?>
+
 
 <footer class="container-fluid text-center">
   <?php include 'includes/footer.php'; ?>

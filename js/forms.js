@@ -31,7 +31,7 @@ function scrollAndShake() {
 
 function formhash(form, password) {
     // Create a new element input, this will be our hashed password field.
-    /*var p = document.createElement("input");
+    var p = document.createElement("input");
 
     // Add the new element to our form.
     form.appendChild(p);
@@ -84,7 +84,7 @@ function errorBox(message) {
 
 			//<div class=\"isa_warning\">
 
-function regformhash(form, fname, lname, addr1, addr2, hcity, hstate, hcountry, hcode, uid, email, ccard, ccexpmonth, ccexpyear, password, conf) {
+function regformhash(form, fname, lname, addr1, addr2, hcity, hstate, hcountry, hcode, uid, email, password, conf) {
      // Check each field has a value
 
 var form_values_array = [];
@@ -102,9 +102,6 @@ form_values_array.push(["Country", hcountry.value]);
 form_values_array.push(["Post Code", hcode.value]);
 form_values_array.push(["Username", uid.value]);
 form_values_array.push(["Email", email.value]);
-form_values_array.push(["Credit Card", ccard.value]);
-form_values_array.push(["Credit Card Expiry Month", ccexpmonth.value]);
-form_values_array.push(["Credit Card Expiry Year", ccexpyear.value]);
 form_values_array.push(["Password", password.value]);
 form_values_array.push(["Confirm Password", conf.value]);
 
@@ -250,14 +247,14 @@ else {
     }
 	}
 		// Check the ccard
- if (noerrors) {
+/* if (noerrors) {
     re = /^([0-9]){10}$/;
     if(!re.test(form.ccard.value)) {
 		errorBox("Credit Card must contain only numbers, and be 10 digits long. Please ensure you have no spaces and try again.");
         form.ccard.focus();
         return false;
     }
- }
+ }*/
 
 
 
@@ -266,23 +263,23 @@ else {
 
  if (noerrors) {
 
-    var re = /((?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%]).{6,20})/;
+    var re = /(.{6,20})/;
     if (!re.test(password.value)) {
-		errorBox("Passwords must contain must contains one digit from 0-9, one lowercase character, one uppercase character,one special symbols in the list \"@#$%\", length at least 6 characters and maximum of 20.  Please try again.");
+		errorBox("Passwords must length at least 6 characters and maximum of 20.  Please try again.");
         return false;
     }
  } //12aA123Asdee$
 
  if (noerrors) {
     // Check password and confirmation are the same
-    if (password.value != conf.value) {
+    if (password.value !== conf.value) {
 		errorBox("Your password and confirmation do not match. Please try again.");
         form.password.focus();
         return false;
     }
  }
 
-    //double hashing not needed
+ 
     /*var p = document.createElement("input");
 
     // Add the new element to our form.

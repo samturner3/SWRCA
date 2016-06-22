@@ -1,4 +1,5 @@
 <?php
+
 // common_db.php - database connection using PHP::PDO ***
 define("CAN_REGISTER", "any");
 define("DEFAULT_ROLE", "member");
