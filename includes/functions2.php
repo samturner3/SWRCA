@@ -31,11 +31,9 @@ function sec_session_start() {
 
 function login($email, $password, $db) {
     // Using prepared statements means that SQL injection is not possible.
-    if ($stmt = $db->prepare("SELECT shopper.shopper_id, shopper.sh_email, shopper.sh_username, shaddr.sh_firstname, shaddr.sh_familyname, shopper.sh_type, shopper.sh_password, shaddr.sh_street1, shaddr.sh_street2, shaddr.sh_city, shaddr.sh_state, shaddr.sh_postcode, shaddr.sh_country
+    if ($stmt = $db->prepare("SELECT shopper.shopper_id, shopper.sh_email, shopper.sh_username, shopper.sh_password
 									from shopper
-									INNER JOIN shaddr
-									ON shopper.shopper_id =  shaddr.shopper_id
-       								WHERE shopper.sh_email = ?
+									WHERE shopper.sh_email = ?
        								LIMIT 1
 		")) {
         $stmt->bindParam(1, $email);  // Bind "$email" to parameter.
@@ -76,7 +74,7 @@ function login($email, $password, $db) {
                                                                 "",
                                                                 $data['sh_username']);
                     $_SESSION['username'] = $data['sh_username'];
-          					$_SESSION['fname'] = $data['sh_firstname'];
+          					/*$_SESSION['fname'] = $data['sh_firstname'];
           					$_SESSION['lname'] = $data['sh_familyname'];
           					//$_SESSION['hnumber'] = $hnumber;
           					$_SESSION['addr1'] = $data['sh_street1'];
@@ -85,7 +83,7 @@ function login($email, $password, $db) {
           					$_SESSION['hstate'] = $data['sh_state'];
           					$_SESSION['hcode'] = $data['sh_postcode'];
 							$_SESSION['hcountry'] = $data['sh_country'];
-
+*/
 
 					//$_SESSION['sClass'] = $sClass;
                     $_SESSION['login_string'] = hash('sha512', $data['sh_password'] . $user_browser);
@@ -98,8 +96,8 @@ function login($email, $password, $db) {
                     echo 'Password is not correct';
 					echo '<br> Entered Password:';
 					echo $password;
-					echo '<br> Database Password:';
-					echo $data['sh_password'];
+/*					echo '<br> Database Password:';
+					echo $data['sh_password'];*/
                     // We record this attempt in the database
                     $now = time();
                     $db->exec("INSERT INTO login_attempt(shopper_id, time)
