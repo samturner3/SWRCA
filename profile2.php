@@ -9,9 +9,9 @@ sec_session_start();
 
 if (login_check($db) == true) {
     $logged = 'in';
-	
-?>
 
+$id = $_SESSION["user_id"];
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,7 +83,7 @@ require 'includes/pagetop.php'; ?>
 		   ///Get All Profiles
 		   //$shopper_id = $_SESSION['user_id'];
         if ($stmt = $db->prepare("SELECT *
-									from master_animal
+									from master_animal where carer_id='$id'
 		")) {
         //$stmt->bindParam(1, $shopper_id);  // Bind "$email" to parameter.
         $stmt->execute();    // Execute the prepared query.
